@@ -39,7 +39,7 @@ def main():
 
 @st.cache(allow_output_mutation=True)
 def load_models():
-    pretrain_embed = api.load('word2vec-google-news-300')
+    pretrain_embed = api.load('glove-twitter-25')
 
     infile = open("knnpickle_file", "rb")
     knn_model = pickle.load(infile)
@@ -57,7 +57,7 @@ description = {
     "Sentinel""": "You should take a straightforward, direct approach when engaging the Knights. \n\nSet the agenda from the start and share about your years of experience in the industry and any certifications you have from authoritative bodies.Be prepared and organized with the facts - Knights often request for details of the product and they would like to compare your product to other similar products as well so that they know they're getting the best value for money. \n\nTo support the value of your product, remember to back up your pitch with statistics, hard data and real life testimonials."""
     }
 MODEL_DESC = {
-    "KNN (K-Nearest Neighbors) Classifier" : "Pretrained word2vec-google-news-300 trained on 1200 twitter users with self-identified MBTI categories."
+    "KNN (K-Nearest Neighbors) Classifier" : "Pretrained glove-twitter-25 trained on 1200 twitter users with self-identified MBTI categories."
 }
 
 def transform_sentence(text, model):
@@ -99,6 +99,40 @@ def get_only_chars(line):
     if clean_line[0] == ' ':
         clean_line = clean_line[1:]
     return clean_line
+
+# dataframe = np.random.randn(10, 20)
+# st.dataframe(dataframe)
+
+# dataframe = pd.DataFrame(
+#     np.random.randn(10, 20),
+#     columns=('col %d' % i for i in range(20)))
+# st.table(dataframe)
+
+# x = st.slider('x')  # 👈 this is a widget
+# st.write(x, 'squared is', x * x)
+
+# # Add a selectbox to the sidebar:
+# add_selectbox = st.sidebar.selectbox(
+#     'How would you like to be contacted?',
+#     ('Email', 'Home phone', 'Mobile phone')
+# )
+
+# # Add a slider to the sidebar:
+# add_slider = st.sidebar.slider(
+#     'Select a range of values',
+#     0.0, 100.0, (25.0, 75.0)
+# )
+
+# left_column, right_column = st.beta_columns(2)
+# # You can use a column just like st.sidebar:
+# left_column.button('Press me!')
+
+# # Or even better, call Streamlit functions inside a "with" block:
+# with right_column:
+#     chosen = st.radio(
+#         'Sorting hat',
+#         ("Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"))
+#     st.write(f"You are in {chosen} house!")
 
 if __name__ == '__main__':
     main()
